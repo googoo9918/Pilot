@@ -1,0 +1,62 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.5'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+description = 'Demo project for Spring Boot'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // --- Spring Boot Starters ---
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'     // JPA/Hibernate
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'     // 서버 템플릿(Thymeleaf)
+    implementation 'org.springframework.boot:spring-boot-starter-validation'    // Bean Validation (Jakarta Validation)
+    implementation 'org.springframework.boot:spring-boot-starter-web'           // MVC(Web), Jackson, Tomcat
+
+    // --- API 문서/Swagger UI(Springdoc) ---
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")  // /swagger-ui, /v3/api-docs
+
+    // --- MyBatis ---
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5'  // MyBatis + Spring Boot 통합
+
+    // --- 개발 편의 ---
+    compileOnly 'org.projectlombok:lombok'                                      // Lombok(컴파일 시에만 필요)
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'             // DevTools(핫스왑/자동재시작)
+
+    // --- 데이터베이스 드라이버 ---
+    runtimeOnly 'com.h2database:h2'                                             // 개발/테스트용 H2 DB
+
+    // --- 애노테이션 프로세서(컴파일 타임 코드 생성) ---
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.projectlombok:lombok'                               // Lombok
+    implementation 'org.mapstruct:mapstruct:1.5.3.Final'                         // MapStruct(매핑 인터페이스)
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'          // MapStruct 프로세서
+    annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'       // Lombok+MapStruct 호환 바인딩
+
+    // --- 테스트 ---
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'       // JUnit/Jupiter, AssertJ 등
+    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.5' // MyBatis 테스트 도우미
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'                 // IDE/JUnit 플랫폼 런처
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

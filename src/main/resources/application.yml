@@ -1,0 +1,60 @@
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8                 # 요청/응답 기본 인코딩
+      force: true                    # 강제로 UTF-8 사용
+
+spring:
+  application:
+    name: demo-app
+
+  datasource:
+    # H2 메모리 모드: DB 파일 없이 애플리케이션 실행 시 바로 DB 생성
+    url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  h2:
+    console:
+      enabled: true                  # 웹 콘솔 활성화
+      path: /h2                      # 접속 경로: http://localhost:8080/h2
+
+  jpa:
+    hibernate:
+      ddl-auto: update               # 테이블 자동 생성/갱신 (운영은 validate)
+    show-sql: true                   # SQL 로그 출력
+    properties:
+      hibernate:
+        format_sql: true             # SQL 포맷팅해서 보기 좋게 출력
+
+  thymeleaf:
+    cache: false                     # 개발 중에는 템플릿 캐시 끄기
+
+# MyBatis 설정
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true   # DB 컬럼명(snake_case) → 객체 필드명(camelCase) 자동 매핑
+    default-fetch-size: 100              # 기본 fetch size
+    default-statement-timeout: 30        # 기본 timeout (초 단위)
+  mapper-locations: classpath:/mappers/**/*.xml   # 매퍼 XML 위치
+  type-aliases-package: com.example.domain        # 도메인 클래스 alias 패키지
+
+# Springdoc(OpenAPI/Swagger) 설정
+springdoc:
+  api-docs:
+    path: /v3/api-docs                 # OpenAPI 문서 JSON URL
+  swagger-ui:
+    path: /swagger-ui                  # Swagger UI 경로 (/swagger-ui/index.html)
+    operationsSorter: method           # 메서드 순서대로 정렬
+    tagsSorter: alpha                  # 태그 이름 알파벳순 정렬
+    display-request-duration: true     # 요청 처리 시간 표시
+
+# 로깅 설정
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.hibernate.SQL: DEBUG           # 실행되는 SQL 로그
+    org.hibernate.orm.jdbc.bind: TRACE # SQL 바인딩 파라미터까지 출력 (운영에서는 끄기)
