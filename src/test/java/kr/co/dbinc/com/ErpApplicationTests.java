@@ -1,4 +1,4 @@
-package kr.co.dbinc.erp;
+package kr.co.dbinc.com;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
