@@ -1,0 +1,68 @@
+@charset "utf-8";
+:root {
+ --bs-blue: #0e67c1;
+ --bs-blue-light:#007ecc;
+ --bs-blue-dark: #005eae;
+ --bs-skyblue: #88DAFF;
+ --bs-red: #dc3545;
+ --bs-orange: #f47920;
+ --bs-orange-light:#ff8546;
+ --bs-orange-dark: #cb292b;
+ --bs-yellow: #FBDF54;
+ --bs-green: #41af68;
+ --bs-green-light:#299951;
+ --bs-green-dark: #26854a;
+ --bs-black: #000;
+ --bs-white: #fff;
+ --bs-gray-100: #EFEFEF;
+ --bs-primary: #007ecc;
+ --bs-primary-dark: #005eae;
+ --bs-primary-dark-hover :#005399;
+ --bs-secondary-100: #459CFF;
+ --bs-border-100: #e3f4fa;
+ --bs-main-border-000:#b6d3e4;
+ --bs-main-border-100:#9abbea;
+ --bs-main-border-200:#7fa3d6;
+ --bs-main-border-300:#c6d7e1;
+ --bs-main-border-400:#6e9ebc;
+ --bs-main-bg-100:#d3e5ff;
+ --bs-main-bg-200:#e2edf3;
+ --bs-main-bg-300:#86bedf;
+ --bs-main-txt-100:#265a8d;
+	
+}
+.nav > ul > li > a:hover, .nav > ul > li.on > a {
+	background: url(../images/nav_on_top_bg_blue.png) repeat-x;
+}
+.nav > ul > li > a:before {
+	background: url(../images/nav_on_top_left_blue.png) no-repeat;
+}
+.nav > ul > li > a:after {
+	background: url(../images/nav_on_top_right_blue.png) no-repeat;
+}
+.subtitle3 h4 {
+	background: url(../images/title_icon_blue.png) no-repeat left 16px;
+}
+.tableB tbody th {
+    background: #e2edf3;
+}
+.tableB tbody th label {
+    background: #e2edf3;
+}
+.tableB tbody th.point {
+	background: #e2edf3 url(../images/point_blue.png) no-repeat 13px 50%!important;
+}
+/* 즐겨찾기 -+ 사용안함
+#quickMenuWrap .quickMenu li p {
+	background-image: url(../images/quick_icon_plus_blue.png);
+}
+#quickMenuWrap .quickMenu li p.on {
+	background-image: url(../images/quick_icon_minus_blue.png);
+}
+*/
+.popup-head {
+	background: var(--bs-primary) url(../images/popp_title_bg_blue.png) no-repeat!important;
+}
+.ui-dialog .ui-dialog-titlebar {
+    background: var(--bs-primary) url(../images/popp_title_bg_blue.png) no-repeat!important;
+}

@@ -1,0 +1,886 @@
+@charset "utf-8";
+/* CSS Document */
+@font-face {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 100;
+    src: url(../font/Pretendard-Thin.woff2) format('woff2'),
+        url(../font/Pretendard-Thin.woff) format('woff'),
+        url(../font/Pretendard-Thin.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 200;
+    src: url(../font/Pretendard-ExtraLight.woff2) format('woff2'),
+        url(../font/Pretendard-ExtraLight.woff) format('woff'),
+        url(../font/Pretendard-ExtraLight.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 300;
+    src: url(../font/Pretendard-Light.woff2) format('woff2'),
+        url(../font/Pretendard-Light.woff) format('woff'),
+        url(../font/Pretendard-Light.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../font/Pretendard-Regular.woff2) format('woff2'),
+        url(../font/Pretendard-Regular.woff) format('woff'),
+        url(../font/Pretendard-Regular.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 500;
+    src: url(../font/Pretendard-Medium.woff2) format('woff2'),
+        url(../font/Pretendard-Medium.woff) format('woff'),
+        url(../font/Pretendard-Medium.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    src: url(../font/Pretendard-SemiBold.woff2) format('woff2'),
+        url(../font/Pretendard-SemiBold.woff) format('woff'),
+        url(../font/Pretendard-SemiBold.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 700;
+    src: url(../font/Pretendard-Bold.woff2) format('woff2'),
+        url(../font/Pretendard-Bold.woff) format('woff'),
+        url(../font/Pretendard-Bold.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 800;
+    src: url(../font/Pretendard-ExtraBold.woff2) format('woff2'),
+        url(../font/Pretendard-ExtraBold.woff) format('woff'),
+        url(../font/Pretendard-ExtraBold.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 900;
+    src: url(../font/Pretendard-Black.woff2) format('woff2'),
+        url(../font/Pretendard-Black.woff) format('woff'),
+        url(../font/Pretendard-Black.otf) format('opentype');
+}
+
+* {
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: 'Pretendard', dotum, '돋움', sans-serif;
+}
+
+/* Reset 시작 */
+/* 브라우저마다 기본 설정이 틀리므로 동일한 화면을 위해서 사용*/
+
+html {
+    height: 100%;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+
+    font-family: 'Pretendard', dotum, '돋움', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+
+/* HTML5 태그를 지원하지 않는 구버전 브라우저를 위하여 */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    line-height: 1;
+    margin: 0;
+    overflow-x: hidden;
+    height: 100%;
+    color: #666;
+
+}
+
+ol,
+ul,
+li {
+    list-style: none;
+    padding: 0;
+    margin: 0
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+::-webkit-scrollbar {
+    width: 10px; /* 20240616 세로스크롤 넓이조정 */
+}
+
+::-webkit-scrollbar-thumb {  /* 20240616 hover기능제거 */
+    height: 30px;
+    background-color: #adadad; /* 240522 스크롤바 컬러-공통으로 사용 위해 회색으로 변경*/
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 1px solid transparent;
+}
+:hover::-webkit-scrollbar-thumb { /* 20240616 hover시 컬러유지 */
+    background-color: #adadad;    
+}
+
+/* Reset 끝 */
+
+
+/* a 태그 */
+a {
+    color: #666;
+    text-decoration: none;
+}
+
+/* a:hover 이벤트 태그 */
+a:hover {
+    color: var(--bs-primary); /* 240522 */
+    text-decoration: none;
+}
+
+/* a:active, a:focus 이벤트 태그 : 이벤트시 투명 점선 테투리 없앰 */
+a:active,
+a:focus {
+    outline: none;
+    ie-dummy: expression(this.hideFocus=true);
+}
+
+img {
+    vertical-align: middle;
+}
+
+/* input 태그 : 버튼 */
+input[type=button],
+input[type=submit],
+button {
+    cursor: pointer;
+    border: 0;
+}
+
+/* input 태그 : 입력 박스 */
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+    padding: 0px 10px;
+    height: 30px;
+    box-sizing: border-box;
+    border: 1px solid #b3b3b3;
+    vertical-align: middle;
+}
+
+/* input 태그 : 입력 박스 : 읽기 전용 */
+/* input 태그 : 입력 박스 : 읽기 전용 */
+input[readonly],
+input[disabled] {
+    background-color: #f5f5f5;
+}
+
+input[type="text"]:focus {
+    border: 1px solid #0075bd; /* 240522 */
+}
+
+input[type="check"],
+input[type="checkbox"],
+input[type="radio"] {
+    vertical-align: middle;
+    /* margin: -4px 3px 0 0; 수정: 2024.07.31 */
+}
+
+label {
+    position: relative;
+    display: inline-block;
+    top: -1px
+}
+
+input:focus {
+    outline: none;
+}
+
+*:focus {
+    outline: none;
+}
+
+input::placeholder {
+    color: #D5D5D5;
+}
+
+input::-webkit-input-placeholder {
+    color: #D5D5D5;
+}
+
+input[type="checkbox"].invisible-radio {
+    display: none;
+}
+
+input[type="checkbox"].invisible-radio+label {
+    color: #fff;
+}
+
+input[type="checkbox"].invisible-radio+label span {
+    display: inline-block;
+    background: url(../images/icon_filter_off.png) no-repeat 50% 50%;
+    margin: 0 1px;
+    vertical-align: middle;
+    width: 23px;
+    height: 23px;
+    cursor: pointer;
+    text-indent: -9999px;
+}
+
+input[type="checkbox"].invisible-radio:checked+label span {
+    background: url(../images/icon_filter_on.png);
+    vertical-align: middle;
+    width: 23px;
+    height: 23px;
+}
+
+/* select 태그 */
+select {
+    height: 30px;
+    padding-left: 5px;
+    line-height: 30px;
+    box-sizing: border-box;
+    color: #636363;
+    border: 1px solid #b3b3b3;
+    vertical-align: middle;
+	padding-right: 30px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #fff url('../images/select_arrow.png') no-repeat 100% 50%;
+	    
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+
+/* select 태그 : 리스트 박스 */
+select[multiple] {
+    height: 84px;
+    line-height: 1;
+    padding-left: 0px;
+}
+
+/* select 태그 : 읽기 전용 */
+select[disabled] {
+    background-color: #f5f5f5;
+}
+
+/* textarea 태그 */
+textarea[readonly],
+textarea[disabled] {
+    background-color: #f5f5f5;
+}
+
+textarea {
+    width: 100%;
+    border: 1px solid #b3b3b3;
+    box-sizing: border-box;
+}
+
+
+.blind {
+    background: none repeat scroll 0 center rgba(0, 0, 0, 0);
+    border: 0 none;
+    display: none;
+    font-size: 0;
+    height: 0;
+    overflow: hidden;
+    width: 0;
+}
+
+fieldset {
+    border: none;
+}
+
+.required {
+    border: 1px solid #b3b3b3 !important;
+} /* 240522 select 컬러-공통으로 사용 위해 회색으로 변경*/
+
+/* Align */
+.tl,
+.tl th,
+.tl td {
+    text-align: left !important
+}
+
+.tc,
+.tc th,
+.tc td {
+    text-align: center !important
+}
+
+.tr,
+.tr th,
+.tr td {
+    text-align: right !important
+}
+
+.txtal {
+    text-align: left !important
+}
+
+.txtac {
+    text-align: center !important
+}
+
+.txtar {
+    text-align: right !important
+}
+
+.fcb {
+    color: blue !important
+}
+
+.fcr {
+    color: red !important
+}
+
+.fl {
+    float: left !important
+}
+
+.fn {
+    float: none !important
+}
+
+.fr {
+    float: right !important
+}
+
+/* Space */
+.mt5 {
+    margin-top: 5px !important
+}
+
+.mt10 {
+    margin-top: 10px !important
+}
+
+.mt15 {
+    margin-top: 15px !important
+}
+
+.mt20 {
+    margin-top: 20px !important
+}
+
+.mt25 {
+    margin-top: 25px !important
+}
+
+.mt30 {
+    margin-top: 30px !important
+}
+
+.mt50 {
+    margin-top: 50px !important
+}
+
+.ml5 {
+    margin-left: 5px !important
+}
+
+.ml10 {
+    margin-left: 10px !important
+}
+
+.ml15 {
+    margin-left: 15px !important
+}
+
+.ml20 {
+    margin-left: 20px !important
+}
+
+.ml25 {
+    margin-left: 25px !important
+}
+
+.ml30 {
+    margin-left: 30px !important
+}
+
+.mr5 {
+    margin-right: 5px !important
+}
+
+.mr10 {
+    margin-right: 10px !important
+}
+
+.mr15 {
+    margin-right: 15px !important
+}
+
+.mr20 {
+    margin-right: 20px !important
+}
+
+.mr25 {
+    margin-right: 25px !important
+}
+
+.mr30 {
+    margin-right: 30px !important
+}
+
+.mr100 {
+    margin-right: 100px !important
+}
+
+.mb5 {
+    margin-bottom: 5px !important
+}
+
+.mb10 {
+    margin-bottom: 10px !important
+}
+
+.mb15 {
+    margin-bottom: 15px !important
+}
+
+.mb17 {
+    margin-bottom: 17px !important
+}
+
+.mb20 {
+    margin-bottom: 20px !important
+}
+
+.mb25 {
+    margin-bottom: 25px !important
+}
+
+.mb30 {
+    margin-bottom: 30px !important
+}
+
+.pt5 {
+    padding-top: 5px !important
+}
+
+.pt10 {
+    padding-top: 10px !important
+}
+
+.pt15 {
+    padding-top: 15px !important
+}
+
+.pt20 {
+    padding-top: 20px !important
+}
+
+.pt25 {
+    padding-top: 25px !important
+}
+
+.pt30 {
+    padding-top: 30px !important
+}
+
+.pt50 {
+    padding-top: 50px !important
+}
+
+.pl5 {
+    padding-left: 5px !important
+}
+
+.pl10 {
+    padding-left: 10px !important
+}
+
+.pl15 {
+    padding-left: 15px !important
+}
+
+.pl20 {
+    padding-left: 20px !important
+}
+
+.pl25 {
+    padding-left: 25px !important
+}
+
+.pl30 {
+    padding-left: 30px !important
+}
+
+.pr5 {
+    padding-right: 5px !important
+}
+
+.pr10 {
+    padding-right: 10px !important
+}
+
+.pr15 {
+    padding-right: 15px !important
+}
+
+.pr20 {
+    padding-right: 20px !important
+}
+
+.pr25 {
+    padding-right: 25px !important
+}
+
+.pr30 {
+    padding-right: 30px !important
+}
+
+.pb5 {
+    padding-bottom: 5px !important
+}
+
+.pb10 {
+    padding-bottom: 10px !important
+}
+
+.pb15 {
+    padding-bottom: 15px !important
+}
+
+.pb20 {
+    padding-bottom: 20px !important
+}
+
+.pb25 {
+    padding-bottom: 25px !important
+}
+
+.pb30 {
+    padding-bottom: 30px !important
+}
+
+/*width*/
+.wi100 {
+    width: 100%;
+}
+
+.wi90 {
+    width: 90%;
+}
+
+.wi80 {
+    width: 80%
+}
+
+.wi69 {
+    width: 69%;
+}
+
+.wi60 {
+    width: 60%;
+}
+
+.wi55 {
+    width: 59%;
+}
+
+.wi50 {
+    width: 50%;
+}
+
+.wi49 {
+    width: 49.4%;
+}
+
+.wi45 {
+    width: 45%;
+}
+
+.wi40 {
+    width: 40%;
+}
+
+.wi35 {
+    width: 35%;
+}
+
+.wi33 {
+    width: 33%;
+}
+
+.wi30 {
+    width: 30%;
+}
+
+.wi25 {
+    width: 25%;
+}
+
+.wi20 {
+    width: 20%;
+}
+
+.wi15 {
+    width: 15%;
+}
+
+.wi10 {
+    width: 10%;
+}
+
+.wi200p {
+    width: 200px;
+}
+
+.wi190p {
+    width: 190px;
+}
+
+.wi180p {
+    width: 180px;
+}
+
+.wi170p {
+    width: 170px;
+}
+
+.wi160p {
+    width: 160px;
+}
+
+.wi150p {
+    width: 150px;
+}
+
+.wi140p {
+    width: 140px;
+}
+
+.wi130p {
+    width: 130px;
+}
+
+.wi120p {
+    width: 120px;
+}
+
+.wi110p {
+    width: 110px;
+}
+
+.wi100p {
+    width: 100px;
+}
+
+.wi90p {
+    width: 110px;
+}
+
+.wi80p {
+    width: 80px;
+}
+
+.wi70p {
+    width: 70px;
+}
+
+.wi60p {
+    width: 60px;
+}
+
+.wi55p {
+    width: 55px;
+}
+
+.wi50p {
+    width: 50px;
+}
+
+.wi45p {
+    width: 45px;
+}
+
+.wi40p {
+    width: 40px;
+}
+
+.wi35p {
+    width: 35px;
+}
+
+.wi30p {
+    width: 30px;
+}
+
+.wi25p {
+    width: 25px;
+}
+
+.wi20p {
+    width: 20px;
+}
+
+.wi15p {
+    width: 15px;
+}
+
+.wi10p {
+    width: 10px;
+}
+
+.red_font {
+    color: #ea191c !important;
+}
+
+.blue_font {
+    color: #0474be !important;
+}
+
+.border_left {
+    border-left: 1px solid #b3b3b3
+}
+
+/*필수항목*/
+.point {
+    background-image: url(../images/point.png) !important;
+    background-repeat: no-repeat !important;
+    background-position: 13px 50% !important;
+    padding-left: 25px !important;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+.clearfix:after {
+    clear: both;
+    display: block;
+    content: "";
+}
