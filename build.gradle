@@ -27,7 +27,6 @@ repositories {
 dependencies {
     // --- Spring Boot Starters ---
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'     // JPA/Hibernate
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'     // 서버 템플릿(Thymeleaf)
     implementation 'org.springframework.boot:spring-boot-starter-validation'    // Bean Validation (Jakarta Validation)
     implementation 'org.springframework.boot:spring-boot-starter-web'           // MVC(Web), Jackson, Tomcat
 
@@ -36,6 +35,13 @@ dependencies {
 
     // --- MyBatis ---
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5'  // MyBatis + Spring Boot 통합
+
+    //JSP (jstl)
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    compileOnly 'jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.1'
+    compileOnly 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+    implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
+    implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
 
     // --- 개발 편의 ---
     compileOnly 'org.projectlombok:lombok'                                      // Lombok(컴파일 시에만 필요)

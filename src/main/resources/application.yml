@@ -1,9 +1,13 @@
 server:
-  port: 8080
+  port: 80
   servlet:
     encoding:
       charset: UTF-8                 # 요청/응답 기본 인코딩
       force: true                    # 강제로 UTF-8 사용
+  error:
+    include-exception: true         #* 오류 응답에 exception의 내용을 포함할지 여부 *#
+    include-stacktrace: always      #* 오류 응답에 stacktrace 내용을 포함할지 여부 *#
+    whitelabel.enabled: false       #* 브라우져 요청에 대해 서버오류시 기본으로 노출할 페이지 사용여부 *#
 
 spring:
   application:
@@ -29,8 +33,10 @@ spring:
       hibernate:
         format_sql: true             # SQL 포맷팅해서 보기 좋게 출력
 
-  thymeleaf:
-    cache: false                     # 개발 중에는 템플릿 캐시 끄기
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
 
 # MyBatis 설정
 mybatis:
@@ -39,7 +45,7 @@ mybatis:
     default-fetch-size: 100              # 기본 fetch size
     default-statement-timeout: 30        # 기본 timeout (초 단위)
   mapper-locations: classpath:/mappers/**/*.xml   # 매퍼 XML 위치
-  type-aliases-package: com.example.domain        # 도메인 클래스 alias 패키지
+  type-aliases-package: classpath:conf/mybatis-config.xml        # 도메인 클래스 alias 패키지
 
 # Springdoc(OpenAPI/Swagger) 설정
 springdoc:
