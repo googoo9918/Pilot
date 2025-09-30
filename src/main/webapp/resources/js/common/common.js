@@ -268,7 +268,7 @@ function gfnConfirmMsg(msg, title, callbackFunc) {
  */
 function gfnAlertMsg(msg, title) {
     if (typeof title == 'undefined')
-        title = '출입관리 시스템';
+        title = '시스템표준 파일럿 시스템';
     $('<div style="margin: 20px 10px 20px 10px; padding: 0; line-height:1.5 !important;"></div>').dialog({
         modal : true,
         resizable : false,
@@ -302,7 +302,7 @@ function gfnAlertMsg(msg, title) {
 function gfnAlertMsg2(msg, title, callbackFunc) {
 	if (typeof callbackFunc == 'undefined' && typeof title == 'function') {
         callbackFunc = title;
-        title = '출입관리 시스템';
+        title = '시스템표준 파일럿 시스템';
     }
 	
     $('<div style="margin: 20px 10px 20px 10px; padding: 0; line-height:1.5 !important;"></div>').dialog({
@@ -340,7 +340,7 @@ function gfnAlertMsg2(msg, title, callbackFunc) {
 function gfnAlertMsg3(msg, title, callbackFunc) {
     if (typeof callbackFunc == 'undefined' && typeof title == 'function') {
         callbackFunc = title;
-        title = '출입관리 시스템';
+        title = '시스템표준 파일럿 시스템';
     }
 
     var dialogContent = $('<div style="margin: 20px 10px 20px 10px; padding: 0; line-height:1.5 !important;"></div>');
