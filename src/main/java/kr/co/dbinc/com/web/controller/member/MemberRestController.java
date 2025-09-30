@@ -25,8 +25,15 @@ public class MemberRestController {
     public ResponseEntity createMember(@Valid @RequestBody MemberRequestDto.MemberRequest memberRequest){
         Member member = memberMapper.memberRequestDtoToMember(memberRequest);
 
-        MemberResponseDto.MemberResponse memberResponse = memberService.createMember(member);
+        // 1.JPA 사용 시
+//        MemberResponseDto.MemberResponse memberResponse = memberService.createMemberByJpa(member);
+//
+//        return ResponseEntity.ok(memberResponse);
 
-        return ResponseEntity.ok(memberResponse);
+
+        // 2. myBatis 사용 시
+        memberService.createMemberByMyBatis(memberRequest);
+
+        return ResponseEntity.ok(memberRequest);
     }
 }
