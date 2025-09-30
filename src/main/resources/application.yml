@@ -40,12 +40,8 @@ spring:
 
 # MyBatis 설정
 mybatis:
-  configuration:
-    map-underscore-to-camel-case: true   # DB 컬럼명(snake_case) → 객체 필드명(camelCase) 자동 매핑
-    default-fetch-size: 100              # 기본 fetch size
-    default-statement-timeout: 30        # 기본 timeout (초 단위)
-  mapper-locations: classpath:/mappers/**/*.xml   # 매퍼 XML 위치
-  type-aliases-package: classpath:conf/mybatis-config.xml        # 도메인 클래스 alias 패키지
+  mapper-locations: classpath:mappers/**/*Mapper.xml
+  config-location: classpath:conf/mybatis-config.xml
 
 # Springdoc(OpenAPI/Swagger) 설정
 springdoc:
