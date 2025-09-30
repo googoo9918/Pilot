@@ -8,10 +8,9 @@ import kr.co.dbinc.com.web.mapper.member.MemberMapper;
 import kr.co.dbinc.com.web.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -26,14 +25,21 @@ public class MemberRestController {
         Member member = memberMapper.memberRequestDtoToMember(memberRequest);
 
         // 1.JPA 사용 시
-//        MemberResponseDto.MemberResponse memberResponse = memberService.createMemberByJpa(member);
-//
-//        return ResponseEntity.ok(memberResponse);
+        MemberResponseDto.MemberResponse memberResponse = memberService.createMemberByJpa(member);
+
+        return ResponseEntity.ok(memberResponse);
 
 
         // 2. myBatis 사용 시
-        memberService.createMemberByMyBatis(memberRequest);
+//        memberService.createMemberByMyBatis(memberRequest);
+//
+//        return ResponseEntity.ok(memberRequest);
+    }
 
-        return ResponseEntity.ok(memberRequest);
+    @GetMapping()
+    public ResponseEntity getMemberList(){
+        List<MemberResponseDto.MemberResponse> memberResponseList = memberService.getMemberListByJpa();
+
+        return ResponseEntity.ok(memberResponseList);
     }
 }

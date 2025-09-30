@@ -1,8 +1,6 @@
 package kr.co.dbinc.com.web.service.member;
 
 import jakarta.transaction.Transactional;
-import kr.co.dbinc.com.common.error.ErrorCode;
-import kr.co.dbinc.com.common.error.exception.BusinessException;
 import kr.co.dbinc.com.web.dto.member.MemberRequestDto;
 import kr.co.dbinc.com.web.dto.member.MemberResponseDto;
 import kr.co.dbinc.com.web.entity.member.Member;
@@ -11,6 +9,8 @@ import kr.co.dbinc.com.web.repository.member.MemberJPARepository;
 import kr.co.dbinc.com.web.repository.member.MemberMyBatisRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -36,4 +36,20 @@ public class MemberService {
     public void createMemberByMyBatis(MemberRequestDto.MemberRequest memberRequest){
         memberMyBatisRepository.createMember(memberRequest);
     }
+
+    /**
+     * JPA로 회원 목록 조회
+     */
+    public List<MemberResponseDto.MemberResponse> getMemberListByJpa() {
+        List<Member> memberList = memberJPARepository.findAll();
+        return memberMapper.memberListToMemberResponseDtoList(memberList);
+    }
+
+    /**
+     * MyBatis로 회원 목록 조회
+     */
+//    public List<MemberResponseDto.MemberResponse> getMemberListByMyBatis() {
+//
+//    }
+
 }

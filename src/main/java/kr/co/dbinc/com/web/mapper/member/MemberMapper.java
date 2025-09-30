@@ -8,6 +8,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface MemberMapper {
     @Mapping(target = "address", source = "m", qualifiedByName = "toAddress")
@@ -20,5 +22,10 @@ public interface MemberMapper {
     }
 
     @Mapping(target = "memberId", source = "id")
+    @Mapping(target = "city", source = "address.city")
+    @Mapping(target = "street", source = "address.street")
+    @Mapping(target = "zipcode", source = "address.zipcode")
     MemberResponseDto.MemberResponse memberToMemberResponseDto(Member newMember);
+
+    List<MemberResponseDto.MemberResponse> memberListToMemberResponseDtoList(List<Member> memberList);
 }
