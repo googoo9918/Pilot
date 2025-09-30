@@ -32,7 +32,7 @@
 
     $(document).ready(function () {
         memberForm.init();
-        hideLoading();
+        hideLoading(true);
     });
 </script>
 <div id="memberFormDiv">

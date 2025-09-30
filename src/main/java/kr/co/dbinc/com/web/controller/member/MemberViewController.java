@@ -23,6 +23,15 @@ public class MemberViewController {
         }
     }
 
+    @GetMapping("memberList")
+    public String memberList(HttpServletRequest request, Model model) {
+        if(isAjaxRequest(request)){
+            return "member/memberList";
+        } else {
+            model.addAttribute("includePage", PageType.MEMBER_LIST.getJspPath());
+            return "layout/layout";
+        }
+    }
     /**
      * AJAX 요청 체크 메서드
      */

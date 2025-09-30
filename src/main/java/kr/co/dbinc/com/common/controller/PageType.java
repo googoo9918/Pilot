@@ -1,7 +1,9 @@
 package kr.co.dbinc.com.common.controller;
 
 public enum PageType {
-    MAIN("/WEB-INF/views/main.jsp"), MEMBER_FORM("/WEB-INF/views/member/memberForm.jsp");
+    MAIN("/WEB-INF/views/main.jsp"),
+    MEMBER_FORM("/WEB-INF/views/member/memberForm.jsp"),
+    MEMBER_LIST("/WEB-INF/views/member/memberList.jsp");
 
     private final String jspPath;
 

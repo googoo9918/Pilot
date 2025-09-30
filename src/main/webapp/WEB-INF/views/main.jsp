@@ -100,7 +100,7 @@
                     회원 가입
                 </button>
                 <button class="btn secondary"
-                        onclick="goScreenSubmit('<c:url value='/members'/>')">
+                        onclick="goScreenSubmit('/member/memberList')">
                     회원 목록
                 </button>
             </div>
