@@ -18,11 +18,14 @@ public class Member {
 
     private String name;
 
+    private String phoneNumber;
+
     @Embedded
     private Address address;
 
-    public Member(String name, Address address) {
+    public Member(String name, String phoneNumber, Address address) {
         this.name = name;
+        this.phoneNumber = phoneNumber;
         this.address = address;
     }
 }

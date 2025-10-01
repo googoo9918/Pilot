@@ -11,17 +11,19 @@
         },
         render_grid: function () {
             var memberColModel = [
-                {coltitle: '이름', name: 'name', align: 'center', sortable: false, editable: false},
-                {coltitle: '도시', name: 'city', align: 'center', sortable: false, editable: false},
+                {coltitle: '이름', name: 'name', align: 'center', width: 50, sortable: false, editable: false},
+                {coltitle: '도시', name: 'city', align: 'center', width: 50, sortable: false, editable: false},
                 {
                     coltitle: '주소',
                     name: 'street',
                     align: 'center',
+                    width: 100,
                     sortable: false,
                     editable: false,
                     classes: 'ui-ellipsis'
                 },
-                {coltitle: '우편번호', name: 'zipcode', align: 'center', sortable: false, editable: false},
+                {coltitle: '전화번호', name: 'phoneNumber', align: 'center', width: 100, sortable: false, editable: false},
+                {coltitle: '우편번호', name: 'zipcode', align: 'center', width: 50, sortable: false, editable: false}
             ]
 
             var memberColNames = new Array();

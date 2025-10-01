@@ -15,13 +15,13 @@
 
         regist_event: function () {
             $("#btnSave").click(function () {
-                if(!isValid("memberForm")) return;
+                if (!isValid("memberForm")) return;
 
                 gfnAlertMsg2("신청 하시겠습니까?", function () {
                     var formData = $('#memberForm').serializeForm();
 
-                    ajax.postRequest("/api/members", formData, function (res){
-                        gfnAlertMsg2("신청이 완료되었습니다.", function (){
+                    ajax.postRequest("/api/members", formData, function (res) {
+                        gfnAlertMsg2("신청이 완료되었습니다.", function () {
                             goScreenSubmit("/main");
                         })
                     })
@@ -60,6 +60,27 @@
                         <td><input type="text" id="street" name="street" style="width:80%" required/></td>
                         <th class="point"><label for="zipcode">우편번호</label></th>
                         <td><input type="text" id="zipcode" name="zipcode" style="width:80%" required/></td>
+                    </tr>
+                    <tr>
+                        <th class="point">
+                            연락처
+                        </th>
+                        <td colspan="3">
+                            <select id="phonePrefix" name="phonePrefix" style="width: 65px; display: inline-block;">
+                                <option value="010">010</option>
+                                <option value="011">011</option>
+                                <option value="016">016</option>
+                                <option value="017">017</option>
+                                <option value="018">018</option>
+                                <option value="019">019</option>
+                            </select>
+                            -
+                            <input type="text" id="phoneMiddle" name="phoneMiddle"
+                                   style="width: 65px; display: inline-block;" maxlength="4"/>
+                            -
+                            <input type="text" id="phoneLast" name="phoneLast" style="width: 65px; display: inline-block;"
+                                   maxlength="4"/>
+                        </td>
                     </tr>
                 </tbody>
             </table>
