@@ -23,6 +23,16 @@ public class itemViewController {
         }
     }
 
+    @GetMapping("itemList")
+    public String itemList(HttpServletRequest request, Model model) {
+        if (isAjaxRequest(request)) {
+            return "item/itemList";
+        } else {
+            model.addAttribute("includePage", PageType.ITEM_LIST.getJspPath());
+            return "layout/layout";
+        }
+    }
+
     /**
      * AJAX 요청 체크 메서드
      */
