@@ -3,6 +3,7 @@ package kr.co.dbinc.com.web.controller.item;
 import jakarta.validation.Valid;
 import kr.co.dbinc.com.web.dto.item.ItemRequestDto;
 import kr.co.dbinc.com.web.dto.item.ItemResponseDto;
+import kr.co.dbinc.com.web.dto.item.ItemWriteRequestDto;
 import kr.co.dbinc.com.web.entity.item.Item;
 import kr.co.dbinc.com.web.mapper.item.ItemMapper;
 import kr.co.dbinc.com.web.service.item.ItemService;
@@ -25,9 +26,17 @@ public class itemRestController {
      */
     @PostMapping()
     public ResponseEntity createItem(@Valid @RequestBody ItemRequestDto.ItemRequest itemRequest) {
-        Item item = itemMapper.itemRequestDtoToItem(itemRequest);
-        ItemResponseDto.ItemResponse itemResponse = itemService.createItemByJpa(item);
+        // 1. JPA 사용 시
+//        Item item = itemMapper.itemRequestDtoToItem(itemRequest);
+//        ItemResponseDto.ItemResponse itemResponse = itemService.createItemByJpa(item);
+//
+//        return ResponseEntity.ok(itemResponse);
 
-        return ResponseEntity.ok(itemResponse);
+        // 2. myBatis 사용 시
+        //requestDto -> WriteRequestDto로 변환
+        ItemWriteRequestDto.ItemCreate itemCreate = itemMapper.itemRequestDtoToItemCreate(itemRequest);
+        itemService.createItemByMyBatis(itemCreate);
+
+        return ResponseEntity.ok(itemRequest);
     }
 }

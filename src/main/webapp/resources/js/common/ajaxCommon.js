@@ -18,7 +18,6 @@ var ajax = {
                     }
                 },
                 error: function (xhr, status, error) {
-                    debugger;
                     if (xhr.status === 401) {
                         var response = JSON.parse(xhr.responseText);
                         let redirectUrl = response.redirectUrl;

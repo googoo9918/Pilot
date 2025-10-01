@@ -1,0 +1,19 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.dbinc.com.web.repository.item.ItemMyBatisRepository">
+    <select id="isExistItem" parameterType="String">
+        SELECT EXISTS (SELECT 1
+                       FROM ITEM
+                       WHERE name = #{name})
+    </select>
+
+    <insert id="createItem" parameterType="ItemCreate">
+        INSERT INTO ITEM(NAME,
+                         PRICE,
+                         STOCK_QUANTITY)
+        VALUES (#{name},
+                #{price},
+                #{stockQuantity})
+    </insert>
+</mapper>

@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import kr.co.dbinc.com.common.error.ErrorCode;
 import kr.co.dbinc.com.common.error.exception.BusinessException;
 import kr.co.dbinc.com.web.dto.item.ItemResponseDto;
+import kr.co.dbinc.com.web.dto.item.ItemWriteRequestDto;
 import kr.co.dbinc.com.web.entity.item.Item;
 import kr.co.dbinc.com.web.mapper.item.ItemMapper;
 import kr.co.dbinc.com.web.repository.item.ItemJpaRepository;
@@ -26,5 +27,14 @@ public class ItemService {
 
         Item newItem = itemJpaRepository.save(item);
         return itemMapper.itemToItemResponseDto(newItem);
+    }
+
+    public void createItemByMyBatis(ItemWriteRequestDto.ItemCreate itemCreate) {
+        boolean isExistItem = itemMyBatisRepository.isExistItem(itemCreate.getName());
+        if(isExistItem){
+            throw new BusinessException(ErrorCode.ITEM_ALREADY_EXIST);
+        }
+
+        itemMyBatisRepository.createItem(itemCreate);
     }
 }
