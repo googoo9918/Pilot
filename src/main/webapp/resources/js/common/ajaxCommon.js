@@ -69,7 +69,7 @@ var ajax = {
             gfnAlertMsg(message);
         // 500번대 에러
         } else {
-            gfnAlertMsg(defaultMessage);
+            gfnAlertMsg(message);
         }
     }
     ,

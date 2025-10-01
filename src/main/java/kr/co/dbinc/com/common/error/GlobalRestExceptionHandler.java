@@ -87,7 +87,7 @@ public class GlobalRestExceptionHandler {
      */
     @ExceptionHandler(value = {BusinessException.class})
     protected ResponseEntity<ErrorResponse> handleConflict(BusinessException e, HttpServletRequest req) {
-        return buildErrorResponse(req, e, e.getErrorCode().getHttpStatus(), e.getErrorCode().getErrorCode(), MSG_INTERNAL_ERROR);
+        return buildErrorResponse(req, e, e.getErrorCode().getHttpStatus(), e.getErrorCode().getErrorCode(), e.getErrorCode().getMessage());
     }
 
     /**
