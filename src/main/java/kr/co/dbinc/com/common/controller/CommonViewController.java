@@ -1,6 +1,7 @@
 package kr.co.dbinc.com.common.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/")
-public class CommonViewController {
+public class CommonViewController implements ErrorController {
 
     @GetMapping("header")
     public String header() {
@@ -23,6 +24,11 @@ public class CommonViewController {
 
         model.addAttribute("includePage", PageType.MAIN.getJspPath());
         return "layout/layout";
+    }
+
+    @GetMapping("error-page")
+    public String error(){
+        return "error/error";
     }
 
     @GetMapping("")

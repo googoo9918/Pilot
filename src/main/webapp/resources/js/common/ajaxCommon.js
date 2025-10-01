@@ -18,6 +18,7 @@ var ajax = {
                     }
                 },
                 error: function (xhr, status, error) {
+                    debugger;
                     if (xhr.status === 401) {
                         var response = JSON.parse(xhr.responseText);
                         let redirectUrl = response.redirectUrl;
@@ -30,7 +31,7 @@ var ajax = {
                             return;
                         }
                     }
-                    $('#contentWrap').load('/error'); // HTML 에러 페이지 로드
+                    $('#contentWrap').load('/error-page'); // HTML 에러 페이지 로드
                 },
                 complete: function(){
                     // hideLoading();
@@ -110,6 +111,9 @@ var ajax = {
             },
             error: function(xhr, status, error) {
                 ajax.handleError(xhr, status, error);
+            },
+            complete: function(){
+                hideLoading();
             }
         };
 
