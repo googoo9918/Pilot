@@ -9,10 +9,9 @@ import kr.co.dbinc.com.web.mapper.item.ItemMapper;
 import kr.co.dbinc.com.web.service.item.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -38,5 +37,15 @@ public class itemRestController {
         itemService.createItemByMyBatis(itemCreate);
 
         return ResponseEntity.ok(itemRequest);
+    }
+
+    /**
+     * 상품 목록 조회
+     */
+    @GetMapping()
+    public ResponseEntity getItemList(){
+        // 1. JPA 사용 시
+        List<ItemResponseDto.ItemResponse> itemResponseList = itemService.getItemListByJpa();
+        return ResponseEntity.ok(itemResponseList);
     }
 }

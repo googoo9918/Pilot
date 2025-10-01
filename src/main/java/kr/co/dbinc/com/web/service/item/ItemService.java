@@ -12,6 +12,8 @@ import kr.co.dbinc.com.web.repository.item.ItemMyBatisRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -36,5 +38,10 @@ public class ItemService {
         }
 
         itemMyBatisRepository.createItem(itemCreate);
+    }
+
+    public List<ItemResponseDto.ItemResponse> getItemListByJpa() {
+        List<Item> itemList = itemJpaRepository.findAll();
+        return itemMapper.itemListToItemResponseDtoList(itemList);
     }
 }
