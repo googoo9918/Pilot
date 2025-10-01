@@ -3,13 +3,12 @@ package kr.co.dbinc.com.web.service.member;
 import jakarta.transaction.Transactional;
 import kr.co.dbinc.com.common.error.ErrorCode;
 import kr.co.dbinc.com.common.error.exception.BusinessException;
-import kr.co.dbinc.com.common.error.exception.EntityNotFoundException;
 import kr.co.dbinc.com.web.dto.member.MemberQueryResponseDto;
 import kr.co.dbinc.com.web.dto.member.MemberResponseDto;
 import kr.co.dbinc.com.web.dto.member.MemberWriteRequestDto;
 import kr.co.dbinc.com.web.entity.member.Member;
 import kr.co.dbinc.com.web.mapper.member.MemberMapper;
-import kr.co.dbinc.com.web.repository.member.MemberJPARepository;
+import kr.co.dbinc.com.web.repository.member.MemberJpaRepository;
 import kr.co.dbinc.com.web.repository.member.MemberMyBatisRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,7 +20,7 @@ import java.util.List;
 @Transactional
 public class MemberService {
 
-    private final MemberJPARepository memberJPARepository;
+    private final MemberJpaRepository memberJPARepository;
     private final MemberMyBatisRepository memberMyBatisRepository;
     private final MemberMapper memberMapper;
 

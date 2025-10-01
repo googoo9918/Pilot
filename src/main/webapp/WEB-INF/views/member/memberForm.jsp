@@ -17,16 +17,17 @@
             $("#btnSave").click(function () {
                 if (!isValid("memberForm")) return;
 
-                gfnAlertMsg2("신청 하시겠습니까?", function () {
-                    var formData = $('#memberForm').serializeForm();
+                gfnConfirmMsg("신청 하시겠습니까?", function () {
+                    showLoading();
+                    setTimeout(function () {
+                        var formData = $('#memberForm').serializeForm();
 
-                    ajax.postRequest("/api/members", formData, function (res) {
-                        gfnAlertMsg2("신청이 완료되었습니다.", function () {
+                        ajax.postRequest("/api/members", formData, function (res) {
                             goScreenSubmit("/main");
                         })
-                    })
+                    }, 200);
                 })
-            })
+            });
         }
     }
 
@@ -51,15 +52,15 @@
                 <tbody>
                     <tr>
                         <th class="point"><label for="name">이름</label></th>
-                        <td><input type="text" id="name" name="name" style="width:80%" required/></td>
+                        <td><input type="text" id="name" name="name" style="width:90%" required/></td>
                         <th class="point"><label for="city">도시</label></th>
-                        <td><input type="text" id="city" name="city" style="width:80%" required/></td>
+                        <td><input type="text" id="city" name="city" style="width:90%" required/></td>
                     </tr>
                     <tr>
                         <th class="point"><label for="street">거리</label></th>
-                        <td><input type="text" id="street" name="street" style="width:80%" required/></td>
+                        <td><input type="text" id="street" name="street" style="width:90%" required/></td>
                         <th class="point"><label for="zipcode">우편번호</label></th>
-                        <td><input type="text" id="zipcode" name="zipcode" style="width:80%" required/></td>
+                        <td><input type="text" id="zipcode" name="zipcode" style="width:90%" required/></td>
                     </tr>
                     <tr>
                         <th class="point">
@@ -78,7 +79,8 @@
                             <input type="text" id="phoneMiddle" name="phoneMiddle"
                                    style="width: 65px; display: inline-block;" maxlength="4"/>
                             -
-                            <input type="text" id="phoneLast" name="phoneLast" style="width: 65px; display: inline-block;"
+                            <input type="text" id="phoneLast" name="phoneLast"
+                                   style="width: 65px; display: inline-block;"
                                    maxlength="4"/>
                         </td>
                     </tr>
