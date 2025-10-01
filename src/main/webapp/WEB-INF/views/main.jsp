@@ -109,11 +109,11 @@
             <div class="section">
                 <div class="section-title">상품 기능</div>
                 <button class="btn dark"
-                        onclick="goScreenSubmit('<c:url value='/items/new'/>')">
+                        onclick="goScreenSubmit('/item/itemForm')">
                     상품 등록
                 </button>
                 <button class="btn dark"
-                        onclick="goScreenSubmit('<c:url value='/items'/>')">
+                        onclick="goScreenSubmit('/item/itemList')">
                     상품 목록
                 </button>
             </div>
@@ -122,11 +122,11 @@
             <div class="section">
                 <div class="section-title">주문 기능</div>
                 <button class="btn info"
-                        onclick="goScreenSubmit('<c:url value='/order'/>')">
+                        onclick="goScreenSubmit('/order/orderForm')">
                     상품 주문
                 </button>
                 <button class="btn info"
-                        onclick="goScreenSubmit('<c:url value='/orders'/>')">
+                        onclick="goScreenSubmit('/order/orderList')">
                     주문 내역
                 </button>
             </div>
