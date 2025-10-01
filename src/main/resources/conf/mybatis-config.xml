@@ -10,6 +10,6 @@
 
     <typeAliases>
         <!-- Member -->
-        <typeAlias alias="MemberRequest" type="kr.co.dbinc.com.web.dto.member.MemberRequestDto$MemberRequest"/>
+        <typeAlias alias="MemberCreate" type="kr.co.dbinc.com.web.dto.member.MemberWriteRequestDto$MemberCreate"/>
     </typeAliases>
 </configuration>

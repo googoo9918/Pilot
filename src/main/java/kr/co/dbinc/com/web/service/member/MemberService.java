@@ -29,7 +29,9 @@ public class MemberService {
      * JPA로 회원 생성
      */
     public MemberResponseDto.MemberResponse createMemberByJpa(Member member) {
-        verifyMemberExists(member.getName());
+        if (memberJPARepository.existsByName(member.getName())) {
+            throw new BusinessException(ErrorCode.MEMBER_ALREADY_EXIST);
+        }
         Member newMember = memberJPARepository.save(member);
         return memberMapper.memberToMemberResponseDto(newMember);
     }
@@ -37,9 +39,13 @@ public class MemberService {
     /**
      * MyBatis로 회원 생성
      */
-//    public void createMemberByMyBatis(MemberWriteRequestDto.MemberCreate memberRequest){
-//        memberMyBatisRepository.createMember(memberRequest);
-//    }
+    public void createMemberByMyBatis(MemberWriteRequestDto.MemberCreate memberCreate) {
+        boolean isExistMember = memberMyBatisRepository.isExistMember(memberCreate.getName());
+        if (isExistMember){
+            throw new BusinessException(ErrorCode.MEMBER_ALREADY_EXIST);
+        }
+        memberMyBatisRepository.createMember(memberCreate);
+    }
 
     /**
      * JPA로 회원 목록 조회
@@ -55,11 +61,4 @@ public class MemberService {
 //    public List<MemberResponseDto.MemberResponse> getMemberListByMyBatis() {
 //        List<>
 //    }
-
-
-    private void verifyMemberExists(String name){
-        if(memberJPARepository.existsByName(name)) {
-            throw new BusinessException(ErrorCode.MEMBER_ALREADY_EXIST);
-        }
-    }
 }

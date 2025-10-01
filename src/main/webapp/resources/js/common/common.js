@@ -328,10 +328,6 @@ function gfnAlertMsg2(msg, title, callbackFunc) {
         close : function() {
             $(this).empty();
             $(this).remove();
-
-            if (callbackFunc) {
-                return eval(callbackFunc)();
-            }
         }
     });
 }

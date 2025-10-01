@@ -27,18 +27,18 @@ public class MemberRestController {
     @PostMapping()
     public ResponseEntity createMember(@Valid @RequestBody MemberRequestDto.MemberRequest memberRequest){
 //        // 1.JPA 사용 시
-        Member member = memberMapper.memberRequestDtoToMember(memberRequest);
-        MemberResponseDto.MemberResponse memberResponse = memberService.createMemberByJpa(member);
-
-        return ResponseEntity.ok(memberResponse);
+//        Member member = memberMapper.memberRequestDtoToMember(memberRequest);
+//        MemberResponseDto.MemberResponse memberResponse = memberService.createMemberByJpa(member);
+//
+//        return ResponseEntity.ok(memberResponse);
 
 
         // 2. myBatis 사용 시
         // requestDto -> WriteRequestDto로 변환
-//        MemberWriteRequestDto.MemberCreate memberCreate = memberMapper.memberRequestDtoToMemberCreate(memberRequest);
-//        memberService.createMemberByMyBatis(memberCreate);
-//
-//        return ResponseEntity.ok(memberRequest);
+        MemberWriteRequestDto.MemberCreate memberCreate = memberMapper.memberRequestDtoToMemberCreate(memberRequest);
+        memberService.createMemberByMyBatis(memberCreate);
+
+        return ResponseEntity.ok(memberRequest);
     }
 
     /**
