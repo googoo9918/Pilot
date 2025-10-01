@@ -16,4 +16,12 @@
                 #{price},
                 #{stockQuantity})
     </insert>
+
+    <select id="findItemList" resultType="ItemQueryResponse">
+        SELECT ITEM_ID,
+               NAME,
+               PRICE,
+               STOCK_QUANTITY
+        FROM ITEM
+    </select>
 </mapper>

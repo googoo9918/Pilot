@@ -3,6 +3,7 @@ package kr.co.dbinc.com.web.service.item;
 import jakarta.transaction.Transactional;
 import kr.co.dbinc.com.common.error.ErrorCode;
 import kr.co.dbinc.com.common.error.exception.BusinessException;
+import kr.co.dbinc.com.web.dto.item.ItemQueryResponseDto;
 import kr.co.dbinc.com.web.dto.item.ItemResponseDto;
 import kr.co.dbinc.com.web.dto.item.ItemWriteRequestDto;
 import kr.co.dbinc.com.web.entity.item.Item;
@@ -43,5 +44,11 @@ public class ItemService {
     public List<ItemResponseDto.ItemResponse> getItemListByJpa() {
         List<Item> itemList = itemJpaRepository.findAll();
         return itemMapper.itemListToItemResponseDtoList(itemList);
+    }
+
+    public List<ItemResponseDto.ItemResponse> getItemListByMyBatis() {
+        List<ItemQueryResponseDto.ItemQueryResponse> itemQueryResponseList = itemMyBatisRepository.findItemList();
+        //QueryResponseDto -> Response 변환
+        return itemMapper.itemQueryResponseListToItemResponseList(itemQueryResponseList);
     }
 }

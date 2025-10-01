@@ -4,11 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-public class ItemResponseDto {
+public class ItemQueryResponseDto {
     @Getter
     @Builder
     @AllArgsConstructor
-    public static class ItemResponse {
+    public static class ItemQueryResponse{
         private Long itemId;
 
         private String name;
@@ -16,5 +16,6 @@ public class ItemResponseDto {
         private int price;
 
         private int stockQuantity;
+
     }
 }

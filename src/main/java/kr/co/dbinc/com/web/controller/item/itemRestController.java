@@ -45,7 +45,11 @@ public class itemRestController {
     @GetMapping()
     public ResponseEntity getItemList(){
         // 1. JPA 사용 시
-        List<ItemResponseDto.ItemResponse> itemResponseList = itemService.getItemListByJpa();
+//        List<ItemResponseDto.ItemResponse> itemResponseList = itemService.getItemListByJpa();
+//        return ResponseEntity.ok(itemResponseList);
+
+        // 2. MyBatis 사용 시
+        List<ItemResponseDto.ItemResponse> itemResponseList = itemService.getItemListByMyBatis();
         return ResponseEntity.ok(itemResponseList);
     }
 }
