@@ -1,6 +1,7 @@
 package kr.co.dbinc.com.web.mapper.member;
 
 import jakarta.validation.Valid;
+import kr.co.dbinc.com.web.dto.member.MemberQueryResponseDto;
 import kr.co.dbinc.com.web.dto.member.MemberRequestDto;
 import kr.co.dbinc.com.web.dto.member.MemberResponseDto;
 import kr.co.dbinc.com.web.dto.member.MemberWriteRequestDto;
@@ -54,4 +55,9 @@ public interface MemberMapper {
 
     @Mapping(target = "phoneNumber", source= "memberRequest", qualifiedByName = "toPhoneNumber")
     MemberWriteRequestDto.MemberCreate memberRequestDtoToMemberCreate(MemberRequestDto.MemberRequest memberRequest);
+
+    @Mapping(target = "phoneNumber", source = "phoneNumber", qualifiedByName = "formatPhoneNumber")
+    MemberResponseDto.MemberResponse memberQueryResponseToMemberResponse(MemberQueryResponseDto.MemberQueryResponse memberQueryResponse);
+
+    List<MemberResponseDto.MemberResponse> memberQueryResponseListToMemberResponseList(List<MemberQueryResponseDto.MemberQueryResponse> memberQueryResponseList);
 }

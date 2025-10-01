@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import kr.co.dbinc.com.common.error.ErrorCode;
 import kr.co.dbinc.com.common.error.exception.BusinessException;
 import kr.co.dbinc.com.common.error.exception.EntityNotFoundException;
+import kr.co.dbinc.com.web.dto.member.MemberQueryResponseDto;
 import kr.co.dbinc.com.web.dto.member.MemberResponseDto;
 import kr.co.dbinc.com.web.dto.member.MemberWriteRequestDto;
 import kr.co.dbinc.com.web.entity.member.Member;
@@ -58,7 +59,9 @@ public class MemberService {
     /**
      * MyBatis로 회원 목록 조회
      */
-//    public List<MemberResponseDto.MemberResponse> getMemberListByMyBatis() {
-//        List<>
-//    }
+    public List<MemberResponseDto.MemberResponse> getMemberListByMyBatis() {
+        List<MemberQueryResponseDto.MemberQueryResponse> memberQueryResponseList = memberMyBatisRepository.findMemberList();
+        //QueryResponse -> Response 변환
+        return memberMapper.memberQueryResponseListToMemberResponseList(memberQueryResponseList);
+    }
 }

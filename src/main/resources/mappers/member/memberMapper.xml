@@ -20,4 +20,14 @@
                        FROM MEMBER
                        WHERE name = #{name})
     </select>
+
+    <select id="findMemberList" resultType="MemberQueryResponse">
+        SELECT MEMBER_ID,
+               CITY,
+               STREET,
+               ZIPCODE,
+               PHONE_NUMBER,
+               NAME
+        FROM MEMBER
+    </select>
 </mapper>

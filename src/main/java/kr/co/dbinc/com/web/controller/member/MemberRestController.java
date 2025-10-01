@@ -47,13 +47,13 @@ public class MemberRestController {
     @GetMapping()
     public ResponseEntity getMemberList(){
         // 1. JPA 사용 시
-        List<MemberResponseDto.MemberResponse> memberResponseList = memberService.getMemberListByJpa();
-
-        return ResponseEntity.ok(memberResponseList);
-
-        // 2. myBatis 사용 시
-//        List<MemberResponseDto.MemberResponse> memberResponseList = memberService.getMemberListByMyBatis();
+//        List<MemberResponseDto.MemberResponse> memberResponseList = memberService.getMemberListByJpa();
 //
 //        return ResponseEntity.ok(memberResponseList);
+
+        // 2. myBatis 사용 시
+        List<MemberResponseDto.MemberResponse> memberResponseList = memberService.getMemberListByMyBatis();
+
+        return ResponseEntity.ok(memberResponseList);
     }
 }

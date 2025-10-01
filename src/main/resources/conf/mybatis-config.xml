@@ -11,5 +11,7 @@
     <typeAliases>
         <!-- Member -->
         <typeAlias alias="MemberCreate" type="kr.co.dbinc.com.web.dto.member.MemberWriteRequestDto$MemberCreate"/>
+        <typeAlias alias="MemberQueryResponse"
+                   type="kr.co.dbinc.com.web.dto.member.MemberQueryResponseDto$MemberQueryResponse"/>
     </typeAliases>
 </configuration>
