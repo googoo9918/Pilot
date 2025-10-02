@@ -10,19 +10,31 @@
         },
 
         set_form: function () {
+            var hasItem = ${item != null};
+            if (hasItem) {
+                $('#name').val('${item.name}');
+                $('#price').val('${item.price}');
+                $('#stockQuantity').val('${item.stockQuantity}');
 
+                // 버튼 텍스트 변경
+                $("#btnSave").html('<i class="xi-save"></i> 수정');
+            }
         },
 
         regist_event: function () {
             $("#btnSave").click(function () {
                 if (!isValid("itemForm")) return;
 
-                gfnConfirmMsg("신청 하시겠습니까?", function () {
+                gfnConfirmMsg($("#btnSave").text().trim() + " 하시겠습니까?", function () {
                     showLoading();
                     setTimeout(function () {
                         var formData = $('#itemForm').serializeForm();
 
-                        ajax.postRequest("/api/items", formData, function (res) {
+                        var url = (${item != null})
+                            ? "/api/items/${item.id}"   // 수정 시
+                            : "/api/items";                 // 등록 시
+
+                        ajax.postRequest(url, formData, function (res) {
                             goScreenSubmit("/main");
                         })
                     }, 200);

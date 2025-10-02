@@ -11,9 +11,26 @@
         },
         render_grid: function () {
             var itemColModel = [
-                {coltitle: '상품명', name: 'name', align: 'center', width: 50, sortable: false, editable: false},
+                {coltitle: '상품Id', name: 'itemId', width: 0, hidden: true},
+                {coltitle: '상품명', name: 'name', align: 'center', width: 100, sortable: false, editable: false},
                 {coltitle: '가격', name: 'price', align: 'center', width: 50, sortable: false, editable: false},
-                {coltitle: '재고수량', name: 'stockQuantity', align: 'center', width: 100, sortable: false, editable: false}
+                {
+                    coltitle: '재고수량',
+                    name: 'stockQuantity',
+                    align: 'center',
+                    width: 50,
+                    sortable: false,
+                    editable: false
+                },
+                {
+                    coltitle: '관리',
+                    name: 'actions',
+                    align: 'center',
+                    width: 50,
+                    sortable: false,
+                    formatter: itemList.renderLink,
+                    classes: 'ui-click-nc'
+                }
             ]
 
             var itemColNames = new Array();
@@ -90,7 +107,13 @@
         },
         regist_event: function () {
 
+        },
+        renderLink: function (cellValue, options, rowObject) {
+            return '<span style="cursor:pointer;"'
+                + ' onclick="goScreenSubmit(\'/item/itemForm\', {itemId: \'' + rowObject.itemId + '\'})">'
+                + '수정</span>';
         }
+
     }
 
     $(document).ready(function () {
