@@ -10,6 +10,8 @@ public class MemberWriteRequestDto {
     @AllArgsConstructor
     @Builder
     public static class MemberCreate{
+        private Long memberId;
+
         private String name;
 
         private String phoneNumber;

@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -26,19 +27,14 @@ public class MemberRestController {
      */
     @PostMapping()
     public ResponseEntity createMember(@Valid @RequestBody MemberRequestDto.MemberRequest memberRequest){
-//        // 1.JPA 사용 시
-//        Member member = memberMapper.memberRequestDtoToMember(memberRequest);
-//        MemberResponseDto.MemberResponse memberResponse = memberService.createMemberByJpa(member);
-//
-//        return ResponseEntity.ok(memberResponse);
-
+        // 1.JPA 사용 시
+//        MemberResponseDto.MemberResponse memberResponse = memberService.createMemberByJpa(memberRequest);
 
         // 2. myBatis 사용 시
-        // requestDto -> WriteRequestDto로 변환
-        MemberWriteRequestDto.MemberCreate memberCreate = memberMapper.memberRequestDtoToMemberCreate(memberRequest);
-        memberService.createMemberByMyBatis(memberCreate);
+        MemberResponseDto.MemberResponse memberResponse = memberService.createMemberByMyBatis(memberRequest);
 
-        return ResponseEntity.ok(memberRequest);
+        URI location = URI.create("/api/members/" + memberResponse.getMemberId());
+        return ResponseEntity.created(location).body(memberResponse);
     }
 
     /**
