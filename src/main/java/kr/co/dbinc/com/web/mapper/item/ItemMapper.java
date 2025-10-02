@@ -25,4 +25,6 @@ public interface ItemMapper {
 
     ItemResponseDto.ItemResponse itemQueryResponseToItemResponse(ItemQueryResponseDto.ItemQueryResponse itemQueryResponse);
     List<ItemResponseDto.ItemResponse> itemQueryResponseListToItemResponseList(List<ItemQueryResponseDto.ItemQueryResponse> itemQueryResponseList);
+
+    ItemResponseDto.ItemResponse itemCreateToItemResponseDto(ItemWriteRequestDto.ItemCreate itemCreate);
 }

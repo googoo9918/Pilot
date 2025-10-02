@@ -8,7 +8,7 @@
                        WHERE name = #{name})
     </select>
 
-    <insert id="createItem" parameterType="ItemCreate">
+    <insert id="createItem" parameterType="ItemCreate" useGeneratedKeys="true" keyProperty="itemId">
         INSERT INTO ITEM(NAME,
                          PRICE,
                          STOCK_QUANTITY)

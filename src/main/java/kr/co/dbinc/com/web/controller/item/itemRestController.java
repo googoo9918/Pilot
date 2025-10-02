@@ -1,6 +1,7 @@
 package kr.co.dbinc.com.web.controller.item;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import kr.co.dbinc.com.web.dto.item.ItemRequestDto;
 import kr.co.dbinc.com.web.dto.item.ItemResponseDto;
 import kr.co.dbinc.com.web.dto.item.ItemWriteRequestDto;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -26,24 +28,20 @@ public class itemRestController {
     @PostMapping()
     public ResponseEntity createItem(@Valid @RequestBody ItemRequestDto.ItemRequest itemRequest) {
         // 1. JPA 사용 시
-//        Item item = itemMapper.itemRequestDtoToItem(itemRequest);
-//        ItemResponseDto.ItemResponse itemResponse = itemService.createItemByJpa(item);
-//
-//        return ResponseEntity.ok(itemResponse);
+//        ItemResponseDto.ItemResponse itemResponse = itemService.createItemByJpa(itemRequest);
 
         // 2. myBatis 사용 시
-        //requestDto -> WriteRequestDto로 변환
-        ItemWriteRequestDto.ItemCreate itemCreate = itemMapper.itemRequestDtoToItemCreate(itemRequest);
-        itemService.createItemByMyBatis(itemCreate);
+        ItemResponseDto.ItemResponse itemResponse = itemService.createItemByMyBatis(itemRequest);
 
-        return ResponseEntity.ok(itemRequest);
+        URI location = URI.create("/items/" + itemResponse.getItemId());
+        return ResponseEntity.created(location).body(itemResponse);
     }
 
     /**
      * 상품 목록 조회
      */
     @GetMapping()
-    public ResponseEntity getItemList(){
+    public ResponseEntity getItemList() {
         // 1. JPA 사용 시
 //        List<ItemResponseDto.ItemResponse> itemResponseList = itemService.getItemListByJpa();
 //        return ResponseEntity.ok(itemResponseList);
@@ -52,4 +50,14 @@ public class itemRestController {
         List<ItemResponseDto.ItemResponse> itemResponseList = itemService.getItemListByMyBatis();
         return ResponseEntity.ok(itemResponseList);
     }
+
+    /**
+     * 상품 수정
+     */
+//    @PatchMapping("/{itemId}")
+//    public ResponseEntity updateItem(@PathVariable @Positive Long itemId, @Valid @RequestBody ItemRequestDto.ItemRequest itemRequest){
+//        // 1. JPA 사용 시
+//        Item item = itemService.updateItemByJpa(itemMapper.itemRequestDtoToItem(itemRequest), itemId);
+//
+//    }
 }
