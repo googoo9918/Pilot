@@ -135,6 +135,9 @@ var ajax = {
             },
             error: function(xhr, status, error) {
                 ajax.handleError(xhr, status, error);
+            },
+            complete: function(){
+                hideLoading();
             }
         };
 
