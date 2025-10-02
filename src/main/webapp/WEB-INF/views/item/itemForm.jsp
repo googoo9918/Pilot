@@ -30,17 +30,26 @@
                     setTimeout(function () {
                         var formData = $('#itemForm').serializeForm();
 
-                        var url = (${item != null})
-                            ? "/api/items/${item.id}"   // 수정 시
-                            : "/api/items";                 // 등록 시
+                        var isUpdate = (${item != null});
 
-                        ajax.postRequest(url, formData, function (res) {
-                            goScreenSubmit("/main");
-                        })
+                        var url = isUpdate
+                            ? "/api/items/${item.id}"   // 수정 시
+                            : "/api/items";             // 등록 시
+
+                        if (isUpdate) {
+                            ajax.putRequest(url, formData, function (res) {
+                                goScreenSubmit("/main");
+                            });
+                        } else {
+                            ajax.postRequest(url, formData, function (res) {
+                                goScreenSubmit("/main");
+                            });
+                        }
                     }, 200);
-                })
+                });
             });
         }
+
     }
 
     $(document).ready(function () {

@@ -68,16 +68,11 @@ public class ItemService {
                 .orElseThrow(() -> new EntityNotFoundException(ErrorCode.NOT_EXIST_ITEM));
     }
 
-    public Item updateItemByJpa(Item item, @Positive Long itemId) {
+    public ItemResponseDto.ItemResponse updateItemByJpa(ItemRequestDto.ItemRequest itemRequest, @Positive Long itemId) {
         Item preItem = getItemById(itemId);
 
-//        Optional.ofNullable(item.getName())
-//                .ifPresent(name -> preItem.updateName(name));
-//        Optional.ofNullable(item.getPrice())
-//                        .ifPresent(price -> preItem.updatePrice(price));
-//        Optional.ofNullable(item.getStockQuantity())
-//                        .ifPresent(stockQuantity -> preItem.updateStockQuantity(stockQuantity));
+        preItem.updateByRequest(itemRequest);
 
-        return preItem;
+        return itemMapper.itemToItemResponseDto(preItem);
     }
 }

@@ -122,7 +122,7 @@
 </script>
 <div id="itemList">
     <div class="subtitle2">
-        <h3> 회원 목록</h3>
+        <h3> 상품 목록</h3>
     </div>
     <div class="tableProArea">
         <div class="tablePro_total" id="total_td">전체 <strong>0</strong>건</div>

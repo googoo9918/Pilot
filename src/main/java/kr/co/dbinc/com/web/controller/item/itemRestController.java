@@ -54,10 +54,11 @@ public class itemRestController {
     /**
      * 상품 수정
      */
-//    @PatchMapping("/{itemId}")
-//    public ResponseEntity updateItem(@PathVariable @Positive Long itemId, @Valid @RequestBody ItemRequestDto.ItemRequest itemRequest){
-//        // 1. JPA 사용 시
-//        Item item = itemService.updateItemByJpa(itemMapper.itemRequestDtoToItem(itemRequest), itemId);
-//
-//    }
+    @PutMapping("/{itemId}")
+    public ResponseEntity updateItem(@PathVariable @Positive Long itemId, @Valid @RequestBody ItemRequestDto.ItemRequest itemRequest){
+        // 1. JPA 사용 시
+        ItemResponseDto.ItemResponse itemResponse = itemService.updateItemByJpa(itemRequest, itemId);
+
+        return ResponseEntity.ok(itemResponse);
+    }
 }
