@@ -21,6 +21,7 @@ public class itemViewController {
     @GetMapping("itemForm")
     public String itemForm(HttpServletRequest request, @RequestParam(value = "itemId", required = false) Long itemId, Model model) {
         if (itemId != null && itemId > 0) {
+            //item 존재 시 정보 조회
             Item item = itemService.getItemById(itemId);
             model.addAttribute("item", item);
         }
