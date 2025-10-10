@@ -52,8 +52,11 @@ public class ItemService {
             throw new BusinessException(ErrorCode.ITEM_ALREADY_EXIST);
         }
 
-        itemMyBatisRepository.createItem(itemCreate);
-        return itemMapper.itemCreateToItemResponseDto(itemCreate);
+        int createCount = itemMyBatisRepository.createItem(itemCreate);
+        if(createCount == 0) throw new IllegalStateException("생성에 실패했습니다.");
+
+        ItemQueryResponseDto.ItemQueryResponse itemQueryResponse = itemMyBatisRepository.selectItemById(itemCreate.getItemId());
+        return itemMapper.itemQueryResponseToItemResponse(itemQueryResponse);
     }
 
     /**
@@ -99,7 +102,7 @@ public class ItemService {
      * mybatis로 상품 수정
      */
     public ItemResponseDto.ItemResponse updateItemByMyBaits(ItemRequestDto.ItemRequest itemRequest, Long itemId) {
-        int updateCount = itemMyBatisRepository.updateItem(itemRequest);
+        int updateCount = itemMyBatisRepository.updateItem(itemRequest, itemId);
 
         if(updateCount == 0){
             throw new EntityNotFoundException(ErrorCode.NOT_EXIST_ITEM);

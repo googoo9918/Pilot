@@ -27,9 +27,9 @@
 
     <update id="updateItem" parameterType="map">
         UPDATE ITEM
-        SET NAME = #{itemReqeust.name},
-            PRICE = #{itemReqeust.price},
-            STOCK_QUANTITY = #{itemReqeust.stockQuantity}
+        SET NAME = #{itemRequest.name},
+            PRICE = #{itemRequest.price},
+            STOCK_QUANTITY = #{itemRequest.stockQuantity}
         WHERE ITEM_ID = #{itemId}
     </update>
 

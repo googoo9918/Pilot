@@ -11,11 +11,11 @@ import java.util.List;
 public interface ItemMyBatisRepository {
     boolean isExistItem(String name);
 
-    void createItem(ItemWriteRequestDto.ItemCreate itemCreate);
+    int createItem(ItemWriteRequestDto.ItemCreate itemCreate);
 
     List<ItemQueryResponseDto.ItemQueryResponse> findItemList();
 
-    int updateItem(ItemRequestDto.ItemRequest itemRequest);
+    int updateItem(ItemRequestDto.ItemRequest itemRequest, Long itemId);
 
     ItemQueryResponseDto.ItemQueryResponse selectItemById(Long itemId);
 }

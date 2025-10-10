@@ -11,7 +11,7 @@ public class ItemWriteRequestDto {
     @AllArgsConstructor
     @Builder
     public static class ItemCreate {
-        private String itemId;
+        private Long itemId;
 
         private String name;
 
