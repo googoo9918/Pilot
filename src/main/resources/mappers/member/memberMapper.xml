@@ -30,4 +30,15 @@
                NAME
         FROM MEMBER
     </select>
+
+    <select id="selectMemberById" parameterType="Long" resultType="MemberQueryResponse">
+        SELECT MEMBER_ID,
+               CITY,
+               STREET,
+               ZIPCODE,
+               PHONE_NUMBER,
+               NAME
+        FROM MEMBER
+        WHERE MEMBER_ID = #{memberId}
+    </select>
 </mapper>

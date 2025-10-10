@@ -13,4 +13,6 @@ public interface MemberMyBatisRepository {
     boolean isExistMember(String name);
 
     List<MemberQueryResponseDto.MemberQueryResponse> findMemberList();
+
+    MemberQueryResponseDto.MemberQueryResponse selectMemberById(Long memberId);
 }

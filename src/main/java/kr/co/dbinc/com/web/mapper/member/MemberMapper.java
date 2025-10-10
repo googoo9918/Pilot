@@ -60,6 +60,4 @@ public interface MemberMapper {
     MemberResponseDto.MemberResponse memberQueryResponseToMemberResponse(MemberQueryResponseDto.MemberQueryResponse memberQueryResponse);
 
     List<MemberResponseDto.MemberResponse> memberQueryResponseListToMemberResponseList(List<MemberQueryResponseDto.MemberQueryResponse> memberQueryResponseList);
-
-    MemberResponseDto.MemberResponse memberCreateToMemberResponseDto(MemberWriteRequestDto.MemberCreate memberCreate);
 }

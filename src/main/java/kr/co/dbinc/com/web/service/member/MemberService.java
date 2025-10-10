@@ -50,8 +50,11 @@ public class MemberService {
         if (isExistMember) {
             throw new BusinessException(ErrorCode.MEMBER_ALREADY_EXIST);
         }
-        memberMyBatisRepository.createMember(memberCreate);
-        return memberMapper.memberCreateToMemberResponseDto(memberCreate);
+        int createCount = memberMyBatisRepository.createMember(memberCreate);
+        if(createCount == 0) throw new IllegalStateException("생성에 실패했습니다.");
+
+        MemberQueryResponseDto.MemberQueryResponse memberQueryResponse = memberMyBatisRepository.selectMemberById(memberCreate.getMemberId());
+        return memberMapper.memberQueryResponseToMemberResponse(memberQueryResponse);
     }
 
     /**
