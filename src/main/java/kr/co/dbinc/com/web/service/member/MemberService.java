@@ -3,10 +3,12 @@ package kr.co.dbinc.com.web.service.member;
 
 import kr.co.dbinc.com.common.error.ErrorCode;
 import kr.co.dbinc.com.common.error.exception.BusinessException;
+import kr.co.dbinc.com.common.error.exception.EntityNotFoundException;
 import kr.co.dbinc.com.web.dto.member.MemberQueryResponseDto;
 import kr.co.dbinc.com.web.dto.member.MemberRequestDto;
 import kr.co.dbinc.com.web.dto.member.MemberResponseDto;
 import kr.co.dbinc.com.web.dto.member.MemberWriteRequestDto;
+import kr.co.dbinc.com.web.entity.item.Item;
 import kr.co.dbinc.com.web.entity.member.Member;
 import kr.co.dbinc.com.web.mapper.member.MemberMapper;
 import kr.co.dbinc.com.web.repository.member.MemberJpaRepository;
@@ -22,7 +24,7 @@ import java.util.List;
 @Transactional
 public class MemberService {
 
-    private final MemberJpaRepository memberJPARepository;
+    private final MemberJpaRepository memberJpaRepository;
     private final MemberMyBatisRepository memberMyBatisRepository;
     private final MemberMapper memberMapper;
 
@@ -33,10 +35,10 @@ public class MemberService {
     public MemberResponseDto.MemberResponse createMemberByJpa(MemberRequestDto.MemberRequest memberRequest) {
         // requestDto -> Entity
         Member member = memberMapper.memberRequestDtoToMember(memberRequest);
-        if (memberJPARepository.existsByName(member.getName())) {
+        if (memberJpaRepository.existsByName(member.getName())) {
             throw new BusinessException(ErrorCode.MEMBER_ALREADY_EXIST);
         }
-        Member newMember = memberJPARepository.save(member);
+        Member newMember = memberJpaRepository.save(member);
         return memberMapper.memberToMemberResponseDto(newMember);
     }
 
@@ -51,7 +53,7 @@ public class MemberService {
             throw new BusinessException(ErrorCode.MEMBER_ALREADY_EXIST);
         }
         int createCount = memberMyBatisRepository.createMember(memberCreate);
-        if(createCount == 0) throw new IllegalStateException("생성에 실패했습니다.");
+        if (createCount == 0) throw new IllegalStateException("생성에 실패했습니다.");
 
         MemberQueryResponseDto.MemberQueryResponse memberQueryResponse = memberMyBatisRepository.selectMemberById(memberCreate.getMemberId());
         return memberMapper.memberQueryResponseToMemberResponse(memberQueryResponse);
@@ -62,7 +64,7 @@ public class MemberService {
      */
     @Transactional(readOnly = true)
     public List<MemberResponseDto.MemberResponse> getMemberListByJpa() {
-        List<Member> memberList = memberJPARepository.findAll();
+        List<Member> memberList = memberJpaRepository.findAll();
         return memberMapper.memberListToMemberResponseDtoList(memberList);
     }
 
@@ -74,5 +76,14 @@ public class MemberService {
         List<MemberQueryResponseDto.MemberQueryResponse> memberQueryResponseList = memberMyBatisRepository.findMemberList();
         //QueryResponse -> Response 변환
         return memberMapper.memberQueryResponseListToMemberResponseList(memberQueryResponseList);
+    }
+
+    /**
+     * pk로 member 조회
+     */
+    @Transactional(readOnly = true)
+    public Member getMemberById(Long memberId) {
+        return memberJpaRepository.findById(memberId)
+                .orElseThrow(() -> new EntityNotFoundException(ErrorCode.NOT_EXIST_ITEM));
     }
 }

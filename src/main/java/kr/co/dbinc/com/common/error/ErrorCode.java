@@ -15,6 +15,7 @@ public enum ErrorCode {
     INVALID_MEMBER_NAME(HttpStatus.BAD_REQUEST, "M-002", "회원 이름은 비어 있을 수 없습니다."),
     INVALID_PHONE_NUMBER(HttpStatus.BAD_REQUEST, "M-003", "전화번호는 11자리 숫자여야 합니다."),
     INVALID_ADDRESS(HttpStatus.BAD_REQUEST, "M-004", "주소 정보는 비어 있을 수 없습니다."),
+    NOT_EXIST_MEMBER(HttpStatus.NOT_FOUND, "M-005", "해당 회원은 존재하지 않습니다."),
 
     /* -- Item -- */
     ITEM_STOCK_NOT_ENOUGH(HttpStatus.UNPROCESSABLE_ENTITY, "I-001", "수량이 충분하지 않습니다."),
