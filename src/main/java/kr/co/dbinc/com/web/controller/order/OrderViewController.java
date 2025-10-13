@@ -30,10 +30,10 @@ public class OrderViewController {
     @GetMapping("orderForm")
     public String orderForm(HttpServletRequest request, Model model) {
         List<MemberResponseDto.MemberResponse> memberResponseList = memberService.getMemberListByJpa();
-        model.addAttribute("member", memberResponseList);
+        model.addAttribute("members", memberResponseList);
 
         List<ItemResponseDto.ItemResponse> itemResponseList = itemService.getItemListByJpa();
-        model.addAttribute("item", itemResponseList);
+        model.addAttribute("items", itemResponseList);
 
         if (isAjaxRequest(request)) {
             return "order/orderForm";
