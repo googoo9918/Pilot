@@ -1,6 +1,8 @@
 package kr.co.dbinc.com.web.service.order;
 
-import jakarta.validation.Valid;
+import kr.co.dbinc.com.common.error.ErrorCode;
+import kr.co.dbinc.com.common.error.exception.BusinessException;
+import kr.co.dbinc.com.common.error.exception.EntityNotFoundException;
 import kr.co.dbinc.com.web.dto.order.OrderRequestDto;
 import kr.co.dbinc.com.web.dto.order.OrderResponseDto;
 import kr.co.dbinc.com.web.entity.delivery.Delivery;
@@ -8,6 +10,7 @@ import kr.co.dbinc.com.web.entity.delivery.DeliveryStatus;
 import kr.co.dbinc.com.web.entity.item.Item;
 import kr.co.dbinc.com.web.entity.member.Member;
 import kr.co.dbinc.com.web.entity.order.Order;
+import kr.co.dbinc.com.web.entity.order.OrderStatus;
 import kr.co.dbinc.com.web.entity.orderItem.OrderItem;
 import kr.co.dbinc.com.web.mapper.order.OrderMapper;
 import kr.co.dbinc.com.web.repository.order.OrderJpaRepository;
@@ -35,6 +38,9 @@ public class OrderService {
 
     private final ItemService itemService;
 
+    /**
+     * JPA로 주문 등록
+     */
     public OrderResponseDto.OrderResponse createOrderByJpa(OrderRequestDto.OrderCreateRequest orderCreateRequest) {
         Member member = memberService.getMemberById(orderCreateRequest.getMemberId());
         // 중복 상품 병합
@@ -61,5 +67,48 @@ public class OrderService {
         order = orderJpaRepository.save(order);
 
         return orderMapper.orderToOrderResponseDto(order);
+    }
+
+    /**
+     * JPA로 주문 목록 조회
+     */
+    @Transactional(readOnly = true)
+    public List<OrderResponseDto.OrderListRow> getOrderListByJpa() {
+        List<Order> orders = orderJpaRepository.findAllWithOrderItemsAndMemberAndDelivery();
+
+        return orderMapper.oderItemListToOrderListRows(orders);
+    }
+
+    /**
+     * JPA로 주문 취소 (재고 복구, 상태 변경)
+     */
+    public void cancelOrderByJpa(Long orderId) {
+        Order order = getOrderById(orderId);
+
+        // 주문 상태가 ORDER인 경우에만 취소 가능
+        if (order.getStatus() != OrderStatus.ORDER) {
+            throw new BusinessException(ErrorCode.ORDER_ALREADY_CANCEL);
+        }
+
+        // 각 OrderItem에 대해 재고 복구
+        for (OrderItem orderItem : order.getOrderItems()) {
+            Item item = orderItem.getItem();
+            if (item != null) {
+                item.addStock(orderItem.getCount());
+            }
+        }
+
+        // 주문 상태를 CANCEL로 변경
+        order.changeStatus(OrderStatus.CANCEL);
+        orderJpaRepository.save(order);
+    }
+
+    /**
+     * PK로 order 조회
+     */
+    @Transactional(readOnly = true)
+    public Order getOrderById(Long orderId) {
+        return orderJpaRepository.findById(orderId)
+                .orElseThrow(() -> new EntityNotFoundException(ErrorCode.NOT_EXIST_ORDER));
     }
 }

@@ -10,8 +10,6 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface OrderMapper {
-
-//    Order orderRequestDtoToOrder(OrderRequestDto.OrderRequest orderRequest);
     default OrderResponseDto.OrderResponse orderToOrderResponseDto(Order order) {
         if (order == null) {
             return null;
@@ -44,5 +42,30 @@ public interface OrderMapper {
                 .delivery(order.getDelivery())
                 .items(items)
                 .build();
+    }
+
+    default List<OrderResponseDto.OrderListRow> oderItemListToOrderListRows(List<Order> orders) {
+        List<OrderResponseDto.OrderListRow> orderListRows = new ArrayList<>();
+        for (Order order : orders) {
+            for (OrderItem orderItem : order.getOrderItems()) {
+                OrderResponseDto.OrderListRow orderListRow = OrderResponseDto.OrderListRow.builder()
+                        .orderItemId(orderItem.getId())
+                        .itemId(order.getId())
+                        .memberName(order.getMember() != null ? order.getMember().getName() : null)
+                        .itemName(orderItem.getItem() != null ? orderItem.getItem().getName() : null)
+                        .orderPrice(orderItem.getOrderPrice())
+                        .count(orderItem.getCount())
+                        .orderStatus(order.getStatus() != null ? order.getStatus().name() : null)
+                        .address(order.getDelivery() != null && order.getDelivery().getAddress() != null
+                                ? order.getDelivery().getAddress().getStreet() : null)
+                        .zipcode(order.getDelivery() != null && order.getDelivery().getAddress() != null
+                                ? order.getDelivery().getAddress().getZipcode() : null)
+                        .orderDate(order.getOrderDate())
+                        .build();
+
+                orderListRows.add(orderListRow);
+            }
+        }
+        return orderListRows;
     }
 }

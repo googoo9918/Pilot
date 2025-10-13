@@ -91,33 +91,38 @@
             var self = this;
 
             // 행 추가
-            $(document).on("click", "#btnAddRow", function () {
-                self.addRow();
-            });
+            $(document)
+                .off("click.orderForm", "#btnAddRow")
+                .on("click.orderForm", "#btnAddRow", function () {
+                    self.addRow();
+                });
 
             // 행 삭제
-            $(document).on("click", ".btnRemoveRow", function (e) {
-                $(e.currentTarget).closest(".orderRow").remove();
-                self.reindex();
-            });
+            $(document)
+                .off("click.orderForm", ".btnRemoveRow")
+                .on("click.orderForm", ".btnRemoveRow", function (e) {
+                    $(e.currentTarget).closest(".orderRow").remove();
+                    self.reindex();
+                });
 
             // 저장
-            $("#btnSave").click(function () {
-                if (!isValid("orderForm")) return;
+            $("#btnSave")
+                .off("click.orderForm")
+                .on("click.orderForm", function () {
+                    if (!isValid("orderForm")) return;
 
-                // 기존 변수명 formData 유지
-                var formData = self.buildFormDataJson();
-                if (!self.validate(formData)) return;
+                    var formData = self.buildFormDataJson();
+                    if (!self.validate(formData)) return;
 
-                gfnConfirmMsg("신청 하시겠습니까?", function () {
-                    showLoading();
-                    setTimeout(function () {
-                        ajax.postRequest("/api/orders", formData, function (res) {
-                            goScreenSubmit("/main");
-                        });
-                    }, 200);
-                })
-            });
+                    gfnConfirmMsg("신청 하시겠습니까?", function () {
+                        showLoading();
+                        setTimeout(function () {
+                            ajax.postRequest("/api/orders", formData, function (res) {
+                                goScreenSubmit("/main");
+                            });
+                        }, 200);
+                    });
+                });
         }
     }
 

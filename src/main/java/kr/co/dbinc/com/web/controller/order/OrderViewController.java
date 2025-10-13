@@ -43,6 +43,16 @@ public class OrderViewController {
         }
     }
 
+    @GetMapping("orderList")
+    public String orderList(HttpServletRequest request, Model model) {
+        if (isAjaxRequest(request)) {
+            return "order/orderList";
+        } else {
+            model.addAttribute("includePage", PageType.ORDER_LIST.getJspPath());
+            return "layout/layout";
+        }
+    }
+
     /**
      * AJAX 요청 체크 메서드
      */

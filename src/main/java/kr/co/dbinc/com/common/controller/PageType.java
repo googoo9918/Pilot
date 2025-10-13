@@ -6,7 +6,8 @@ public enum PageType {
     MEMBER_LIST("/WEB-INF/views/member/memberList.jsp"),
     ITEM_FORM("/WEB-INF/views/item/itemForm.jsp"),
     ITEM_LIST("/WEB-INF/views/item/itemList.jsp"),
-    ORDER_FORM("/WEB-INF/views/order/orderForm.jsp");
+    ORDER_FORM("/WEB-INF/views/order/orderForm.jsp"),
+    ORDER_LIST("/WEB-INF/views/order/orderList.jsp");
 
     private final String jspPath;
 

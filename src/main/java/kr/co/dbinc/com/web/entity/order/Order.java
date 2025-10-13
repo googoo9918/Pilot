@@ -51,6 +51,10 @@ public class Order {
         this.delivery = delivery;
     }
 
+    public void changeStatus(OrderStatus status) {
+        this.status = status;
+    }
+
     public static Order createOrder(Member member, Delivery delivery, List<OrderItem> orderItems) {
         Order order = new Order();
         order.assignMember(member);

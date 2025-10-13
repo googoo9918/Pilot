@@ -1,5 +1,6 @@
 package kr.co.dbinc.com.web.dto.order;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import kr.co.dbinc.com.web.entity.Address;
 import kr.co.dbinc.com.web.entity.delivery.Delivery;
 import kr.co.dbinc.com.web.entity.member.Member;
@@ -33,5 +34,22 @@ public class OrderResponseDto {
         private Long orderItemId;
         private int orderPrice;         // 스냅샷 단가
         private int count;
+    }
+
+    @Getter
+    @Builder
+    @AllArgsConstructor
+    public static class OrderListRow {
+        private Long orderItemId;
+        private Long itemId;
+        private String memberName;
+        private String itemName;
+        private int orderPrice;           // 스냅샷 단가
+        private int count;
+        private String orderStatus;       // ORDER, CANCEL
+        private String address;
+        private String zipcode;
+        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+        private LocalDateTime orderDate;
     }
 }
