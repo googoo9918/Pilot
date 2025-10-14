@@ -19,4 +19,15 @@ public class ItemWriteRequestDto {
 
         private String stockQuantity;
     }
+
+    @Getter
+    @AllArgsConstructor
+    @Builder
+    public static class ItemUpdate {
+        private String name;
+
+        private String price;
+
+        private String stockQuantity;
+    }
 }

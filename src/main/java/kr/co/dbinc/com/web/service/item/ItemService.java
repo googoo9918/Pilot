@@ -69,7 +69,7 @@ public class ItemService {
     }
 
     /**
-     * mybatis로 상품 생성
+     * mybatis로 상품 목록 조호
      */
     @Transactional(readOnly = true)
     public List<ItemResponseDto.ItemResponse> getItemListByMyBatis() {
@@ -102,6 +102,8 @@ public class ItemService {
      * mybatis로 상품 수정
      */
     public ItemResponseDto.ItemResponse updateItemByMyBaits(ItemRequestDto.ItemRequest itemRequest, Long itemId) {
+        //requestDto -> WriteRequestDto로 변환
+        ItemWriteRequestDto.ItemUpdate itemUpdate = itemMapper.itemRequestDtoToItemUpdate(itemRequest);
         int updateCount = itemMyBatisRepository.updateItem(itemRequest, itemId);
 
         if(updateCount == 0){

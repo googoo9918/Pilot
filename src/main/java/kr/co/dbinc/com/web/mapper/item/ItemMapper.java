@@ -1,6 +1,5 @@
 package kr.co.dbinc.com.web.mapper.item;
 
-import jakarta.validation.Valid;
 import kr.co.dbinc.com.web.dto.item.ItemQueryResponseDto;
 import kr.co.dbinc.com.web.dto.item.ItemRequestDto;
 import kr.co.dbinc.com.web.dto.item.ItemResponseDto;
@@ -27,4 +26,6 @@ public interface ItemMapper {
     List<ItemResponseDto.ItemResponse> itemQueryResponseListToItemResponseList(List<ItemQueryResponseDto.ItemQueryResponse> itemQueryResponseList);
 
     ItemResponseDto.ItemResponse itemCreateToItemResponseDto(ItemWriteRequestDto.ItemCreate itemCreate);
+
+    ItemWriteRequestDto.ItemUpdate itemRequestDtoToItemUpdate(ItemRequestDto.ItemRequest itemRequest);
 }
