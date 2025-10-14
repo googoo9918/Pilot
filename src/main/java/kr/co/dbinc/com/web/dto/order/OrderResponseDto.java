@@ -41,6 +41,7 @@ public class OrderResponseDto {
     @AllArgsConstructor
     public static class OrderListRow {
         private Long orderItemId;
+        private Long orderId;
         private Long itemId;
         private String memberName;
         private String itemName;

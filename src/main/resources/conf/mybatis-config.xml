@@ -17,5 +17,11 @@
         <!-- ITEM -->
         <typeAlias alias="ItemCreate" type="kr.co.dbinc.com.web.dto.item.ItemWriteRequestDto$ItemCreate"/>
         <typeAlias alias="ItemQueryResponse" type="kr.co.dbinc.com.web.dto.item.ItemQueryResponseDto$ItemQueryResponse"/>
+
+        <!-- ORDER -->
+        <typeAlias alias="DeliveryCreate" type="kr.co.dbinc.com.web.dto.order.OrderWriteRequestDto$DeliveryCreate"/>
+        <typeAlias alias="OrderCreate" type="kr.co.dbinc.com.web.dto.order.OrderWriteRequestDto$OrderCreate"/>
+        <typeAlias alias="OrderItemCreate" type="kr.co.dbinc.com.web.dto.order.OrderWriteRequestDto$OrderItemCreate"/>
+        <typeAlias alias="OrderListRow" type="kr.co.dbinc.com.web.dto.order.OrderQueryResponseDto$OrderListRow"/>
     </typeAliases>
 </configuration>

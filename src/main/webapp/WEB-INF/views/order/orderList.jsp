@@ -12,6 +12,7 @@
         render_grid: function () {
             var orderColModel = [
                 {coltitle: '주문상품Id', name: 'orderItemId', width: 0, hidden: true},
+                {coltitle: '주문번호', name: 'orderId', align: 'center', width: 25, sortable: false, editable: false},
                 {coltitle: '상품번호', name: 'itemId', align: 'center', width: 25, sortable: false, editable: false},
                 {coltitle: '회원명', name: 'memberName', align: 'center', width: 50, sortable: false, editable: false},
                 {coltitle: '상품명', name: 'itemName', align: 'center', width: 50, sortable: false, editable: false},

@@ -22,10 +22,13 @@ public class OrderRestController {
      */
     @PostMapping
     public ResponseEntity createOrder(@Valid @RequestBody OrderRequestDto.OrderCreateRequest orderCreateRequest) {
-        OrderResponseDto.OrderResponse orderResponse = orderService.createOrderByJpa(orderCreateRequest);
+        // JPA 사용 시
+//        OrderResponseDto.OrderResponse orderResponse = orderService.createOrderByJpa(orderCreateRequest);
+        // MyBatis 사용 시
+        OrderResponseDto.OrderResponse orderResponse = orderService.createOrderByMyBatis(orderCreateRequest);
 
         URI location = URI.create("/orders/" + orderResponse.getOrderId());
-        return ResponseEntity.created(location).body(orderResponse);
+         return ResponseEntity.created(location).body(orderResponse);
     }
 
     /**
@@ -33,7 +36,10 @@ public class OrderRestController {
      */
     @GetMapping()
     public ResponseEntity getOrderList() {
-        List<OrderResponseDto.OrderListRow> orderListRows = orderService.getOrderListByJpa();
+        // JPA 사용 시
+//        List<OrderResponseDto.OrderListRow> orderListRows = orderService.getOrderListByJpa();
+        // MyBatis 사용 시
+        List<OrderResponseDto.OrderListRow> orderListRows = orderService.getOrderListByMyBatis();
 
         return ResponseEntity.ok(orderListRows);
     }
@@ -43,7 +49,11 @@ public class OrderRestController {
      */
     @DeleteMapping("/{orderId}")
     public ResponseEntity deleteOrder(@PathVariable Long orderId) {
-        orderService.cancelOrderByJpa(orderId);
+        // JPA 사용 시
+//        List<OrderResponseDto.OrderListRow> orderListRows = orderService.getOrderListByJpa();
+
+        // MyBatis 사용 시
+        orderService.cancelOrderByMyBatis(orderId);
         return ResponseEntity.ok().build();
     }
 }
