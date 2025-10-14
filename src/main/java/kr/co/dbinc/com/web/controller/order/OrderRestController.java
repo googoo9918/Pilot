@@ -1,6 +1,7 @@
 package kr.co.dbinc.com.web.controller.order;
 
 import jakarta.validation.Valid;
+import kr.co.dbinc.com.web.doc.order.OrderAPI;
 import kr.co.dbinc.com.web.dto.order.OrderRequestDto;
 import kr.co.dbinc.com.web.dto.order.OrderResponseDto;
 import kr.co.dbinc.com.web.service.order.OrderService;
@@ -14,7 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/orders")
-public class OrderRestController {
+public class OrderRestController implements OrderAPI {
     private final OrderService orderService;
 
     /**

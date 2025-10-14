@@ -31,7 +31,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'           // MVC(Web), Jackson, Tomcat
 
     // --- API 문서/Swagger UI(Springdoc) ---
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")  // /swagger-ui, /v3/api-docs
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9")  // /swagger-ui, /v3/api-docs
 
     // --- MyBatis ---
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5'  // MyBatis + Spring Boot 통합

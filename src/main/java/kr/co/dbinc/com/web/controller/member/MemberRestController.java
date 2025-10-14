@@ -1,6 +1,7 @@
 package kr.co.dbinc.com.web.controller.member;
 
 import jakarta.validation.Valid;
+import kr.co.dbinc.com.web.doc.member.MemberAPI;
 import kr.co.dbinc.com.web.dto.member.MemberRequestDto;
 import kr.co.dbinc.com.web.dto.member.MemberResponseDto;
 import kr.co.dbinc.com.web.dto.member.MemberWriteRequestDto;
@@ -17,7 +18,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/members")
-public class MemberRestController {
+public class MemberRestController implements MemberAPI {
 
     private final MemberService memberService;
     private final MemberMapper memberMapper;

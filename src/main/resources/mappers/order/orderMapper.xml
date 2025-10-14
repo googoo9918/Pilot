@@ -1,0 +1,88 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.dbinc.com.web.repository.order.OrderMyBatisRepository">
+
+    <!-- 배송 생성 -->
+    <insert id="insertDelivery" parameterType="DeliveryCreate" useGeneratedKeys="true" keyProperty="deliveryId">
+        INSERT INTO DELIVERY (CITY,
+                              STREET,
+                              ZIPCODE,
+                              STATUS)
+        VALUES (#{city},
+                #{street},
+                #{zipcode},
+                #{status})
+    </insert>
+
+    <!-- 주문 생성 -->
+    <insert id="insertOrder" parameterType="OrderCreate" useGeneratedKeys="true" keyProperty="orderId">
+        INSERT INTO ORDERS (MEMBER_ID,
+                            DELIVERY_ID,
+                            ORDER_DATE,
+                            STATUS)
+        VALUES (#{memberId},
+                #{deliveryId},
+                CURRENT_TIMESTAMP,
+                #{status})
+    </insert>
+
+    <!-- 주문상품 생성 -->
+    <insert id="insertOrderItem" parameterType="OrderItemCreate" useGeneratedKeys="true" keyProperty="orderItemId">
+        INSERT INTO ORDER_ITEM (ORDER_ID,
+                                ITEM_ID,
+                                ORDER_PRICE,
+                                COUNT)
+        VALUES (#{orderId},
+                #{itemId},
+                #{orderPrice},
+                #{count})
+    </insert>
+
+    <!-- 주문 목록 -->
+    <select id="findOrderList" resultType="OrderListRow">
+        SELECT oi.ORDER_ITEM_ID  AS orderItemId,
+               o.ORDER_ID        AS orderId,
+               i.ITEM_ID         AS itemId,
+               m.NAME            AS memberName,
+               i.NAME            AS itemName,
+               oi.ORDER_PRICE    AS orderPrice,
+               oi.COUNT          AS count,
+               o.STATUS          AS orderStatus,
+               d.CITY || ' ' || d.STREET AS address,
+               d.ZIPCODE         AS zipcode,
+               o.ORDER_DATE      AS orderDate
+        FROM ORDER_ITEM oi
+                 JOIN ORDERS o   ON oi.ORDER_ID = o.ORDER_ID
+                 JOIN ITEM i     ON oi.ITEM_ID = i.ITEM_ID
+                 JOIN MEMBER m   ON o.MEMBER_ID = m.MEMBER_ID
+                 JOIN DELIVERY d ON o.DELIVERY_ID = d.DELIVERY_ID
+        ORDER BY o.ORDER_DATE DESC
+    </select>
+
+    <!-- 주문 취소: 상태 변경 -->
+    <update id="cancelOrder" parameterType="long">
+        UPDATE ORDERS
+        SET STATUS = 'CANCEL'
+        WHERE ORDER_ID = #{orderId}
+          AND STATUS != 'CANCEL'
+    </update>
+
+    <!-- 주문 취소 시 품목 재고 복구 -->
+    <update id="restoreItemStockByOrder" parameterType="long">
+        UPDATE ITEM i
+        SET i.STOCK_QUANTITY = i.STOCK_QUANTITY + (
+            SELECT COALESCE(SUM(oi.COUNT), 0)
+            FROM ORDER_ITEM oi
+            WHERE oi.ITEM_ID = i.ITEM_ID
+              AND oi.ORDER_ID = #{orderId}
+        )
+        WHERE EXISTS (
+            SELECT 1 FROM ORDER_ITEM oi
+            WHERE oi.ITEM_ID = i.ITEM_ID
+              AND oi.ORDER_ID = #{orderId}
+        )
+    </update>
+
+</mapper>
+

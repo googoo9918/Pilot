@@ -18,6 +18,7 @@ public interface ItemMapper {
     @Mapping(target = "itemId", source = "id")
     ItemResponseDto.ItemResponse itemToItemResponseDto(Item newItem);
 
+    @Mapping(target = "itemId", ignore = true)
     ItemWriteRequestDto.ItemCreate itemRequestDtoToItemCreate(ItemRequestDto.ItemRequest itemRequest);
 
     List<ItemResponseDto.ItemResponse> itemListToItemResponseDtoList(List<Item> itemList);

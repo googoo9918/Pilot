@@ -2,6 +2,7 @@ package kr.co.dbinc.com.web.controller.item;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
+import kr.co.dbinc.com.web.doc.item.ItemAPI;
 import kr.co.dbinc.com.web.dto.item.ItemRequestDto;
 import kr.co.dbinc.com.web.dto.item.ItemResponseDto;
 import kr.co.dbinc.com.web.dto.item.ItemWriteRequestDto;
@@ -18,7 +19,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/items")
-public class itemRestController {
+public class itemRestController implements ItemAPI {
     private final ItemService itemService;
     private final ItemMapper itemMapper;
 
